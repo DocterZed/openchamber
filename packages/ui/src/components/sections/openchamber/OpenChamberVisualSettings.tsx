@@ -253,7 +253,7 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
         || shouldShow('textJustificationActivity')
         || shouldShow('activityHeaderTimestamps')
         || shouldShow('persistDraft')
-        || shouldShow('chatInputSpellcheck');
+        || (!isMobile && shouldShow('chatInputSpellcheck'));
     const selectedToolExpansionOption = TOOL_EXPANSION_OPTIONS.find((option) => option.value === toolCallExpansion);
 
     const showPwaInstallNameSetting = shouldShow('pwaInstallName') && isWebRuntime() && browserTab;
@@ -895,7 +895,7 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                 </div>
                             )}
 
-                            {(shouldShow('stickyUserHeader') || (shouldShow('mobileStatusBar') && isMobile) || shouldShow('dotfiles') || shouldShow('queueMode') || shouldShow('persistDraft') || shouldShow('chatInputSpellcheck') || shouldShow('reasoning') || shouldShow('textJustificationActivity')) && (
+                            {(shouldShow('stickyUserHeader') || (shouldShow('mobileStatusBar') && isMobile) || shouldShow('dotfiles') || shouldShow('queueMode') || shouldShow('persistDraft') || (!isMobile && shouldShow('chatInputSpellcheck')) || shouldShow('reasoning') || shouldShow('textJustificationActivity')) && (
                                 <section className="p-2 space-y-0.5">
                                     {shouldShow('stickyUserHeader') && (
                                         <div
@@ -1022,7 +1022,7 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                         </div>
                                     )}
 
-                                    {shouldShow('chatInputSpellcheck') && (
+                                    {!isMobile && shouldShow('chatInputSpellcheck') && (
                                         <div
                                             className="group flex cursor-pointer items-center gap-2 py-1.5"
                                             role="button"
